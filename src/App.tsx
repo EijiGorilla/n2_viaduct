@@ -21,9 +21,10 @@ import {
   CalcitePanel,
   CalciteList,
   CalciteListItem,
+  CalciteSegmentedControl,
+  CalciteSegmentedControlItem,
 } from '@esri/calcite-components-react';
 import Chart from './components/Chart';
-import { dropdownData } from './dropdownData';
 import ProgressChart from './components/ProgressChart';
 
 function App() {
@@ -39,7 +40,8 @@ function App() {
   const [underground, setUnderground] = useState<boolean>(false);
 
   // For dropdown filter
-  const [contractPackage, setContractPackage] = useState<null | any>(null);
+  const [cpValueSelected, setCpValueSelected] = useState<any>('N-01');
+  const contractPackage = ['N-01', 'N-02', 'N-03', 'N-04'];
 
   useEffect(() => {
     if (activeWidget) {
@@ -56,14 +58,6 @@ function App() {
       actionNextWidget.hidden = false;
     }
   });
-
-  useEffect(() => {
-    setContractPackage({ name: 'N-01' });
-  }, []);
-
-  const handleMunicipalityChange = (obj: any) => {
-    setContractPackage(obj);
-  };
 
   useEffect(() => {
     map.ground.opacity = underground === true ? 0.7 : 1;
@@ -84,39 +78,13 @@ function App() {
     }
   }, []);
 
-  // Style CSS
-  const customstyles = {
-    option: (styles: any, { data, isDisabled, isFocused, isSelected }: any) => {
-      // const color = chroma(data.color);
-      return {
-        ...styles,
-        backgroundColor: isFocused ? '#999999' : isSelected ? '#2b2b2b' : '#2b2b2b',
-        color: '#ffffff',
-      };
-    },
-
-    control: (defaultStyles: any) => ({
-      ...defaultStyles,
-      backgroundColor: '#2b2b2b',
-      borderColor: '#949494',
-      height: 35,
-      width: '170px',
-      color: '#ffffff',
-    }),
-    singleValue: (defaultStyles: any) => ({ ...defaultStyles, color: '#fff' }),
-  };
-
   return (
     <>
       <CalciteShell>
         <CalciteTabs slot="panel-end" style={{ width: '25vw' }}>
-          <Chart contractp={contractPackage === null ? '' : contractPackage.name} />
+          <Chart contractp={!cpValueSelected ? '' : cpValueSelected} />
         </CalciteTabs>
-        <header
-          slot="header"
-          id="header-title"
-          style={{ display: 'flex', width: '100%', padding: '0 1rem' }}
-        >
+        <header slot="header" id="headerDiv">
           <img
             src="https://EijiGorilla.github.io/Symbols/Projec_Logo/DOTr_Logo_v2.png"
             alt="DOTr Logo"
@@ -126,21 +94,25 @@ function App() {
           />
           <b className="headerTitle">N2 VIADUCT</b>
           <div className="date">As of December 6, 2023</div>
-
-          <div className="dropdownFilter">
-            <div className="dropdownFilterLayout">
-              <b style={{ color: 'white', margin: 10, fontSize: '0.9vw' }}>CP</b>
-              <Select
-                placeholder="Select Municipality"
-                value={contractPackage}
-                options={dropdownData}
-                onChange={handleMunicipalityChange}
-                getOptionLabel={(x: any) => x.name}
-                styles={customstyles}
-              />
-            </div>
-          </div>
-
+          <CalciteSegmentedControl
+            onCalciteSegmentedControlChange={(event: any) =>
+              setCpValueSelected(event.target.selectedItem.id)
+            }
+          >
+            {cpValueSelected &&
+              contractPackage.map((contractp: any, index: any) => {
+                return (
+                  <CalciteSegmentedControlItem
+                    {...(cpValueSelected === contractp ? { checked: true } : {})}
+                    key={index}
+                    value={contractp}
+                    id={contractp}
+                  >
+                    {contractp}
+                  </CalciteSegmentedControlItem>
+                );
+              })}
+          </CalciteSegmentedControl>
           <img
             src="https://EijiGorilla.github.io/Symbols/Projec_Logo/GCR LOGO.png"
             alt="GCR Logo"
@@ -300,7 +272,7 @@ function App() {
 
         {/* Lot progress chart is loaded ONLY when charts widget is clicked. */}
         {nextWidget === 'charts' && nextWidget !== activeWidget ? (
-          <ProgressChart contractp={contractPackage === null ? '' : contractPackage.name} />
+          <ProgressChart contractp={!cpValueSelected ? '' : cpValueSelected} />
         ) : (
           ''
         )}
