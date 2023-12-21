@@ -93,7 +93,7 @@ function App() {
             style={{ marginBottom: 'auto', marginTop: 'auto' }}
           />
           <b className="headerTitle">N2 VIADUCT</b>
-          <div className="date">As of December 6, 2023</div>
+          <div className="date">As of December 20, 2023</div>
           <CalciteSegmentedControl
             onCalciteSegmentedControlChange={(event: any) =>
               setCpValueSelected(event.target.selectedItem.id)
