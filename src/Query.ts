@@ -136,7 +136,7 @@ export async function generateChartData(contractp: any) {
     const pile_comp = stats.total_boredpile_comp;
     const pilecap_incomp = stats.total_pilecap_incomp;
     const pilecap_delay = stats.total_pilecap_delay;
-    const pilecap_comp = stats.total_pier_comp;
+    const pilecap_comp = stats.total_pilecap_comp;
     const pier_incomp = stats.total_pier_incomp;
     const pier_delay = stats.total_pier_delay;
     const pier_comp = stats.total_pier_comp;
