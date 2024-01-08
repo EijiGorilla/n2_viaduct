@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import { useRef, useEffect, useState } from 'react';
-import { map, view, basemaps, layerList, timeSlider, start, end } from './Scene';
-import Select from 'react-select';
+import { map, view, basemaps, layerList, timeSlider, start } from './Scene';
 import './index.css';
 import './App.css';
 import '@esri/calcite-components/dist/components/calcite-shell';
@@ -252,7 +251,6 @@ function App() {
             class="timeslider-panel"
             height-scale="s"
             data-panel-id="timeslider"
-            // ref={timeSliderDiv}
             hidden
           ></CalcitePanel>
 
