@@ -6,7 +6,7 @@ import Search from '@arcgis/core/widgets/Search';
 import Expand from '@arcgis/core/widgets/Expand';
 import GroupLayer from '@arcgis/core/layers/GroupLayer';
 import Compass from '@arcgis/core/widgets/Compass';
-
+import TimeSlider from '@arcgis/core/widgets/TimeSlider';
 import {
   chainageLayer,
   pierNoLayer,
@@ -118,4 +118,30 @@ const searchExpand = new Expand({
 });
 view.ui.add(searchExpand, {
   position: 'top-right',
+});
+
+export const start = new Date(2021, 8, 1);
+export const end = new Date(2026, 8, 1);
+interface Props {
+  interval: any;
+  timeExtent: any;
+}
+
+const stops: Props = {
+  interval: {
+    value: 1,
+    unit: 'months',
+  },
+  timeExtent: { start, end },
+};
+
+export const timeSlider = new TimeSlider({
+  container: undefined,
+  mode: 'cumulative-from-start',
+  layout: 'auto',
+  fullTimeExtent: {
+    start: start,
+    end: end,
+  },
+  stops: stops,
 });

@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import { useRef, useEffect, useState } from 'react';
-import { map, view, basemaps, layerList } from './Scene';
+import { map, view, basemaps, layerList, timeSlider, start, end } from './Scene';
 import Select from 'react-select';
 import './index.css';
 import './App.css';
@@ -26,10 +26,13 @@ import {
 } from '@esri/calcite-components-react';
 import Chart from './components/Chart';
 import ProgressChart from './components/ProgressChart';
+import TimeSlider from './components/TimeSlider';
+import { viaductLayer } from './layers';
 
 function App() {
   const mapDiv = useRef(null);
   const layerListDiv = useRef<HTMLDivElement | undefined | any>(null);
+  const timeSliderDiv = useRef<HTMLDivElement | undefined | any>(null);
 
   // For Calcite Design
   const calcitePanelBasemaps = useRef<HTMLDivElement | undefined | any>(null);
@@ -49,6 +52,12 @@ function App() {
         `[data-panel-id=${activeWidget}]`,
       ) as HTMLCalcitePanelElement;
       actionActiveWidget.hidden = true;
+
+      if (activeWidget === 'timeslider') {
+        timeSlider.timeExtent.end = start;
+        view.ui.remove(timeSlider);
+        viaductLayer.definitionExpression = "CP = '" + cpValueSelected + "'";
+      }
     }
 
     if (nextWidget !== activeWidget) {
@@ -56,6 +65,10 @@ function App() {
         `[data-panel-id=${nextWidget}]`,
       ) as HTMLCalcitePanelElement;
       actionNextWidget.hidden = false;
+
+      if (nextWidget === 'timeslider') {
+        view.ui.add(timeSlider, 'bottom-leading');
+      }
     }
   });
 
@@ -75,6 +88,7 @@ function App() {
       view.ui.empty('top-left');
       basemaps.container = calcitePanelBasemaps.current;
       layerList.container = layerListDiv.current;
+      timeSlider.container = timeSliderDiv.current;
     }
   }, []);
 
@@ -170,6 +184,17 @@ function App() {
             ></CalciteAction>
 
             <CalciteAction
+              data-action-id="timeslider"
+              icon="clock"
+              text="Timeslider"
+              id="timeslider"
+              onClick={(event: any) => {
+                setNextWidget(event.target.id);
+                setActiveWidget(nextWidget === activeWidget ? null : nextWidget);
+              }}
+            ></CalciteAction>
+
+            <CalciteAction
               data-action-id="information"
               icon="information"
               text="Information"
@@ -223,6 +248,14 @@ function App() {
             hidden
           ></CalcitePanel>
 
+          <CalcitePanel
+            class="timeslider-panel"
+            height-scale="s"
+            data-panel-id="timeslider"
+            // ref={timeSliderDiv}
+            hidden
+          ></CalcitePanel>
+
           <CalcitePanel heading="Description" data-panel-id="information" hidden>
             {nextWidget === 'information' ? (
               <div className="informationDiv">
@@ -273,6 +306,13 @@ function App() {
         {/* Lot progress chart is loaded ONLY when charts widget is clicked. */}
         {nextWidget === 'charts' && nextWidget !== activeWidget ? (
           <ProgressChart contractp={!cpValueSelected ? '' : cpValueSelected} />
+        ) : (
+          ''
+        )}
+
+        {/* time slider widget */}
+        {nextWidget === 'timeslider' && nextWidget !== activeWidget ? (
+          <TimeSlider contractp={!cpValueSelected ? '' : cpValueSelected} />
         ) : (
           ''
         )}
