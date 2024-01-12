@@ -72,6 +72,12 @@ function App() {
   });
 
   useEffect(() => {
+    if (nextWidget === 'timeslider') {
+      view.ui.remove(timeSlider);
+    }
+  }, [cpValueSelected]);
+
+  useEffect(() => {
     map.ground.opacity = underground === true ? 0.7 : 1;
     view.environment.atmosphereEnabled = false;
   }, [underground]);
@@ -106,7 +112,7 @@ function App() {
             style={{ marginBottom: 'auto', marginTop: 'auto' }}
           />
           <b className="headerTitle">N2 VIADUCT</b>
-          <div className="date">As of December 20, 2023</div>
+          <div className="date">As of January 10, 2024</div>
           <CalciteSegmentedControl
             onCalciteSegmentedControlChange={(event: any) =>
               setCpValueSelected(event.target.selectedItem.id)
