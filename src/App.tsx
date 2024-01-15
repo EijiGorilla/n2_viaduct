@@ -27,8 +27,11 @@ import Chart from './components/Chart';
 import ProgressChart from './components/ProgressChart';
 import TimeSlider from './components/TimeSlider';
 import { viaductLayer } from './layers';
+import { dateUpdate } from './Query';
 
 function App() {
+  const [asOfDate, setAsOfDate] = useState<undefined | any | unknown>(null);
+
   const mapDiv = useRef(null);
   const layerListDiv = useRef<HTMLDivElement | undefined | any>(null);
   const timeSliderDiv = useRef<HTMLDivElement | undefined | any>(null);
@@ -83,6 +86,10 @@ function App() {
   }, [underground]);
 
   useEffect(() => {
+    dateUpdate().then((response: any) => {
+      setAsOfDate(response);
+    });
+
     if (mapDiv.current) {
       map.ground.navigationConstraint = {
         type: 'none',
@@ -112,7 +119,7 @@ function App() {
             style={{ marginBottom: 'auto', marginTop: 'auto' }}
           />
           <b className="headerTitle">N2 VIADUCT</b>
-          <div className="date">As of January 10, 2024</div>
+          <div className="date">{!asOfDate ? '' : 'As of ' + asOfDate}</div>
           <CalciteSegmentedControl
             onCalciteSegmentedControlChange={(event: any) =>
               setCpValueSelected(event.target.selectedItem.id)
