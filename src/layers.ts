@@ -270,7 +270,7 @@ function renderViaductLayer() {
 
 export const viaductLayer = new SceneLayer({
   portalItem: {
-    id: 'c7364b5cd79748e7866ea8eda9681d73',
+    id: '925fc9339c13427b81d800eb77db57f0',
   },
   elevationInfo: {
     mode: 'absolute-height', //absolute-height, relative-to-ground
@@ -278,6 +278,39 @@ export const viaductLayer = new SceneLayer({
   title: 'Viaduct',
   labelsVisible: false,
   outFields: ['*'],
+  popupTemplate: {
+    title: '<p>{PierNumber}</p>',
+    lastEditInfoEnabled: false,
+    returnGeometry: true,
+    content: [
+      {
+        type: 'fields',
+        fieldInfos: [
+          {
+            fieldName: 'Type',
+            label: 'Type',
+          },
+          {
+            fieldName: 'CP',
+          },
+          {
+            fieldName: 'planned_date',
+            label: 'Target Date',
+          },
+          {
+            fieldName: 'uniqueID',
+          },
+        ],
+      },
+    ],
+  },
 });
 
 renderViaductLayer();
+
+export const viaductLayerStatus4 = new SceneLayer({
+  portalItem: {
+    id: '925fc9339c13427b81d800eb77db57f0',
+  },
+  definitionExpression: 'Status1 = 4',
+});

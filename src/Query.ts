@@ -1,4 +1,4 @@
-import { dateTable, pierNoLayer, viaductLayer } from './layers';
+import { dateTable, pierNoLayer, viaductLayer, viaductLayerStatus4 } from './layers';
 import StatisticDefinition from '@arcgis/core/rest/support/StatisticDefinition';
 import { view } from './Scene';
 
@@ -256,38 +256,122 @@ export async function generateTotalProgress(contractp: any) {
   });
 }
 
+// export async function timeSeriesChartData(contractp: any) {
+//   var total_complete_pile = new StatisticDefinition({
+//     onStatisticField: 'CASE WHEN (Status1 = 4 and Type = 1) THEN 1 ELSE 0 END',
+//     outStatisticFieldName: 'total_complete_pile',
+//     statisticType: 'sum',
+//   });
+
+//   var total_complete_pilecap = new StatisticDefinition({
+//     onStatisticField: 'CASE WHEN (Status1 = 4 and Type = 2) THEN 1 ELSE 0 END',
+//     outStatisticFieldName: 'total_complete_pilecap',
+//     statisticType: 'sum',
+//   });
+
+//   var total_complete_pier = new StatisticDefinition({
+//     onStatisticField: 'CASE WHEN (Status1 = 4 and Type = 3) THEN 1 ELSE 0 END',
+//     outStatisticFieldName: 'total_complete_pier',
+//     statisticType: 'sum',
+//   });
+
+//   var total_complete_pierhead = new StatisticDefinition({
+//     onStatisticField: 'CASE WHEN (Status1 = 4 and Type = 4) THEN 1 ELSE 0 END',
+//     outStatisticFieldName: 'total_complete_pierhead',
+//     statisticType: 'sum',
+//   });
+
+//   var total_complete_precast = new StatisticDefinition({
+//     onStatisticField: 'CASE WHEN (Status1 = 4 and Type = 5) THEN 1 ELSE 0 END',
+//     outStatisticFieldName: 'total_complete_precast',
+//     statisticType: 'sum',
+//   });
+
+//   var query = viaductLayer.createQuery();
+//   // eslint-disable-next-line no-useless-concat
+
+//   if (!contractp) {
+//     // eslint-disable-next-line no-useless-concat
+//     query.where = 'end_date IS NOT NULL' + ' AND ' + "CP = 'N-01'";
+//   } else {
+//     // eslint-disable-next-line no-useless-concat
+//     query.where = 'end_date IS NOT NULL' + ' AND ' + "CP = '" + contractp + "'";
+//   }
+
+//   query.outStatistics = [
+//     total_complete_pile,
+//     total_complete_pilecap,
+//     total_complete_pier,
+//     total_complete_pierhead,
+//     total_complete_precast,
+//   ];
+//   query.outFields = ['end_date', 'CP'];
+//   query.orderByFields = ['end_date'];
+//   query.groupByFieldsForStatistics = ['end_date'];
+
+//   return viaductLayer.queryFeatures(query).then((response: any) => {
+//     var stats = response.features;
+
+//     // collect all dates for each viaduct type
+//     const data = stats.map((result: any, index: any) => {
+//       const attributes = result.attributes;
+//       const date = attributes.end_date;
+
+//       const pileCount = attributes.total_complete_pile;
+//       const pilecapCount = attributes.total_complete_pilecap;
+//       const pierCount = attributes.total_complete_pier;
+//       const pierheadCount = attributes.total_complete_pierhead;
+//       const precastCount = attributes.total_complete_precast;
+
+//       // compile in object
+//       return Object.assign(
+//         {},
+//         {
+//           date,
+//           pile: pileCount,
+//           pilecap: pilecapCount,
+//           pier: pierCount,
+//           piearhead: pierheadCount,
+//           precast: precastCount,
+//         },
+//       );
+//     });
+//     return data;
+//   });
+// }
+
 export async function timeSeriesChartData(contractp: any) {
   var total_complete_pile = new StatisticDefinition({
-    onStatisticField: 'CASE WHEN (Status1 = 4 and Type = 1) THEN 1 ELSE 0 END',
+    onStatisticField: 'CASE WHEN Type = 1 THEN 1 ELSE 0 END',
     outStatisticFieldName: 'total_complete_pile',
     statisticType: 'sum',
   });
 
   var total_complete_pilecap = new StatisticDefinition({
-    onStatisticField: 'CASE WHEN (Status1 = 4 and Type = 2) THEN 1 ELSE 0 END',
+    onStatisticField: 'CASE WHEN Type = 2 THEN 1 ELSE 0 END',
     outStatisticFieldName: 'total_complete_pilecap',
     statisticType: 'sum',
   });
 
   var total_complete_pier = new StatisticDefinition({
-    onStatisticField: 'CASE WHEN (Status1 = 4 and Type = 3) THEN 1 ELSE 0 END',
+    onStatisticField: 'CASE WHEN Type = 3 THEN 1 ELSE 0 END',
     outStatisticFieldName: 'total_complete_pier',
     statisticType: 'sum',
   });
 
   var total_complete_pierhead = new StatisticDefinition({
-    onStatisticField: 'CASE WHEN (Status1 = 4 and Type = 4) THEN 1 ELSE 0 END',
+    onStatisticField: 'CASE WHEN Type = 4 THEN 1 ELSE 0 END',
     outStatisticFieldName: 'total_complete_pierhead',
     statisticType: 'sum',
   });
 
   var total_complete_precast = new StatisticDefinition({
-    onStatisticField: 'CASE WHEN (Status1 = 4 and Type = 5) THEN 1 ELSE 0 END',
+    onStatisticField: 'CASE WHEN Type = 5 THEN 1 ELSE 0 END',
     outStatisticFieldName: 'total_complete_precast',
     statisticType: 'sum',
   });
 
-  var query = viaductLayer.createQuery();
+  var query = viaductLayerStatus4.createQuery();
   // eslint-disable-next-line no-useless-concat
 
   if (!contractp) {
@@ -309,7 +393,7 @@ export async function timeSeriesChartData(contractp: any) {
   query.orderByFields = ['end_date'];
   query.groupByFieldsForStatistics = ['end_date'];
 
-  return viaductLayer.queryFeatures(query).then((response: any) => {
+  return viaductLayerStatus4.queryFeatures(query).then((response: any) => {
     var stats = response.features;
 
     // collect all dates for each viaduct type
