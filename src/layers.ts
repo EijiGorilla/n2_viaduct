@@ -16,10 +16,10 @@ import { labelSymbol3DLine } from './Label';
 /* Standalone table for Dates */
 export const dateTable = new FeatureLayer({
   portalItem: {
-    id: '68fe46f717f94218a9adcbc1dfb908b7',
-    portal: {
-      url: 'https://gis.railway-sector.com/portal',
-    },
+    id: 'a7c510fa74e64ba190b962f66d4db46c',
+    // portal: {
+    //   url: 'https://gis.railway-sector.com/portal',
+    // },
   },
 });
 
@@ -51,10 +51,10 @@ var chainageRenderer = new SimpleRenderer({
 
 export const chainageLayer = new FeatureLayer({
   portalItem: {
-    id: 'e47e9f4d475e4e24acad458a1428f3f9',
-    portal: {
-      url: 'https://gis.railway-sector.com/portal',
-    },
+    id: '22926e24ad0c41219b60a1522240900d',
+    // portal: {
+    //   url: 'https://gis.railway-sector.com/portal',
+    // },
   },
   layerId: 5,
   title: 'Chainage',
@@ -109,12 +109,8 @@ var pierNoLabelClass = new LabelClass({
 });
 
 export const pierNoLayer = new FeatureLayer({
-  portalItem: {
-    id: 'e47e9f4d475e4e24acad458a1428f3f9',
-    portal: {
-      url: 'https://gis.railway-sector.com/portal',
-    },
-  },
+  url: 'https://services8.arcgis.com/h9TUF6x5VzqLQaYx/arcgis/rest/services/N2_Land_Structure/FeatureServer',
+
   layerId: 6,
   labelingInfo: [pierNoLabelClass],
   elevationInfo: {
@@ -128,10 +124,10 @@ export const pierNoLayer = new FeatureLayer({
 // * PROW *//
 export const rowLayer = new FeatureLayer({
   portalItem: {
-    id: 'e47e9f4d475e4e24acad458a1428f3f9',
-    portal: {
-      url: 'https://gis.railway-sector.com/portal',
-    },
+    id: '22926e24ad0c41219b60a1522240900d',
+    // portal: {
+    //   url: 'https://gis.railway-sector.com/portal',
+    // },
   },
   layerId: 1,
   title: 'ROW',
@@ -163,10 +159,10 @@ var labelClass = new LabelClass({
 
 export const stationLayer = new FeatureLayer({
   portalItem: {
-    id: 'e47e9f4d475e4e24acad458a1428f3f9',
-    portal: {
-      url: 'https://gis.railway-sector.com/portal',
-    },
+    id: '22926e24ad0c41219b60a1522240900d',
+    // portal: {
+    //   url: 'https://gis.railway-sector.com/portal',
+    // },
   },
   layerId: 2,
   title: 'Station',
