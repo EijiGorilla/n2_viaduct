@@ -5,6 +5,7 @@ import UniqueValueRenderer from '@arcgis/core/renderers/UniqueValueRenderer';
 import SimpleRenderer from '@arcgis/core/renderers/SimpleRenderer';
 import {
   SimpleMarkerSymbol,
+  SimpleLineSymbol,
   MeshSymbol3D,
   FillSymbol3DLayer,
   LabelSymbol3D,
@@ -116,15 +117,17 @@ export const pierNoLayer = new FeatureLayer({
 });
 
 // * PROW *//
+var prowRenderer = new SimpleRenderer({
+  symbol: new SimpleLineSymbol({
+    color: '#ff0000',
+    width: '2px',
+  }),
+});
 export const rowLayer = new FeatureLayer({
-  portalItem: {
-    id: '876de8483da9485aac5df737cbef2143',
-    portal: {
-      url: 'https://gis.railway-sector.com/portal',
-    },
-  },
+  url: 'https://gis.railway-sector.com/server/rest/services/N2_Alignment/FeatureServer/1',
   layerId: 1,
   title: 'ROW',
+  renderer: prowRenderer,
   definitionExpression: "Extension = 'N2'",
   popupEnabled: false,
 });
