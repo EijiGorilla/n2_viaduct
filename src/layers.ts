@@ -16,10 +16,10 @@ import { labelSymbol3DLine } from './Label';
 /* Standalone table for Dates */
 export const dateTable = new FeatureLayer({
   portalItem: {
-    id: 'a7c510fa74e64ba190b962f66d4db46c',
-    // portal: {
-    //   url: 'https://gis.railway-sector.com/portal',
-    // },
+    id: 'b2a118b088a44fa0a7a84acbe0844cb2',
+    portal: {
+      url: 'https://gis.railway-sector.com/portal',
+    },
   },
 });
 
@@ -50,12 +50,7 @@ var chainageRenderer = new SimpleRenderer({
 });
 
 export const chainageLayer = new FeatureLayer({
-  portalItem: {
-    id: '22926e24ad0c41219b60a1522240900d',
-    // portal: {
-    //   url: 'https://gis.railway-sector.com/portal',
-    // },
-  },
+  url: 'https://gis.railway-sector.com/server/rest/services/N2_Alignment/FeatureServer/5',
   layerId: 5,
   title: 'Chainage',
   elevationInfo: {
@@ -109,8 +104,7 @@ var pierNoLabelClass = new LabelClass({
 });
 
 export const pierNoLayer = new FeatureLayer({
-  url: 'https://services8.arcgis.com/h9TUF6x5VzqLQaYx/arcgis/rest/services/N2_Land_Structure/FeatureServer',
-
+  url: 'https://gis.railway-sector.com/server/rest/services/N2_Alignment/FeatureServer/6',
   layerId: 6,
   labelingInfo: [pierNoLabelClass],
   elevationInfo: {
@@ -124,10 +118,10 @@ export const pierNoLayer = new FeatureLayer({
 // * PROW *//
 export const rowLayer = new FeatureLayer({
   portalItem: {
-    id: '22926e24ad0c41219b60a1522240900d',
-    // portal: {
-    //   url: 'https://gis.railway-sector.com/portal',
-    // },
+    id: '876de8483da9485aac5df737cbef2143',
+    portal: {
+      url: 'https://gis.railway-sector.com/portal',
+    },
   },
   layerId: 1,
   title: 'ROW',
@@ -159,10 +153,10 @@ var labelClass = new LabelClass({
 
 export const stationLayer = new FeatureLayer({
   portalItem: {
-    id: '22926e24ad0c41219b60a1522240900d',
-    // portal: {
-    //   url: 'https://gis.railway-sector.com/portal',
-    // },
+    id: '876de8483da9485aac5df737cbef2143',
+    portal: {
+      url: 'https://gis.railway-sector.com/portal',
+    },
   },
   layerId: 2,
   title: 'Station',
@@ -215,7 +209,7 @@ const launchingGirderLabelClass = new LabelClass({
 
 export const launchingGirderLayer = new FeatureLayer({
   portalItem: {
-    id: 'e47e9f4d475e4e24acad458a1428f3f9',
+    id: '876de8483da9485aac5df737cbef2143',
     portal: {
       url: 'https://gis.railway-sector.com/portal',
     },
@@ -266,7 +260,10 @@ function renderViaductLayer() {
 
 export const viaductLayer = new SceneLayer({
   portalItem: {
-    id: '925fc9339c13427b81d800eb77db57f0',
+    id: 'd3fc705f1ec14d888214bfdbf37f1fe7',
+    portal: {
+      url: 'https://gis.railway-sector.com/portal',
+    },
   },
   elevationInfo: {
     mode: 'absolute-height', //absolute-height, relative-to-ground
@@ -306,7 +303,10 @@ renderViaductLayer();
 
 export const viaductLayerStatus4 = new SceneLayer({
   portalItem: {
-    id: '925fc9339c13427b81d800eb77db57f0',
+    id: 'd3fc705f1ec14d888214bfdbf37f1fe7',
+    portal: {
+      url: 'https://gis.railway-sector.com/portal',
+    },
   },
   definitionExpression: 'Status1 = 4',
 });
