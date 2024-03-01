@@ -125,7 +125,6 @@ var prowRenderer = new SimpleRenderer({
 });
 export const rowLayer = new FeatureLayer({
   url: 'https://gis.railway-sector.com/server/rest/services/N2_Alignment/FeatureServer/1',
-  layerId: 1,
   title: 'ROW',
   renderer: prowRenderer,
   definitionExpression: "Extension = 'N2'",
