@@ -61,7 +61,7 @@ export const chainageLayer = new FeatureLayer({
   minScale: 150000,
   maxScale: 0,
   renderer: chainageRenderer,
-  outFields: ['*'],
+  // outFields: ['*'],
   popupEnabled: false,
 });
 
@@ -112,7 +112,7 @@ export const pierNoLayer = new FeatureLayer({
     mode: 'on-the-ground', //absolute-height, relative-to-ground
   },
   title: 'Pier No',
-  outFields: ['*'],
+  // outFields: ['*'],
   popupEnabled: false,
 });
 
@@ -222,7 +222,7 @@ export const launchingGirderLayer = new FeatureLayer({
     mode: 'on-the-ground', //absolute-height, relative-to-ground
   },
   title: 'Girder Launcher Location',
-  outFields: ['*'],
+  // outFields: ['*'],
   definitionExpression: 'LAYER IS NOT NULL',
 });
 
@@ -272,7 +272,6 @@ export const viaductLayer = new SceneLayer({
   },
   title: 'Viaduct',
   labelsVisible: false,
-  outFields: ['*'],
   popupTemplate: {
     title: '<p>{PierNumber}</p>',
     lastEditInfoEnabled: false,
