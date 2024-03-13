@@ -110,7 +110,14 @@ function App() {
         <CalciteTabs slot="panel-end" style={{ width: '25vw' }}>
           <Chart contractp={!cpValueSelected ? '' : cpValueSelected} />
         </CalciteTabs>
-        <header slot="header" id="headerDiv">
+        <header
+          slot="header"
+          id="headerDiv"
+          style={{
+            borderStyle: 'solid',
+            borderWidth: 1,
+          }}
+        >
           <img
             src="https://EijiGorilla.github.io/Symbols/Projec_Logo/DOTr_Logo_v2.png"
             alt="DOTr Logo"
