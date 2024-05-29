@@ -334,7 +334,7 @@ const Chart = (props: any) => {
     }
     makeSeries('Complete', 'comp');
     makeSeries('Incomplete', 'incomp');
-    makeSeries('Delayed', 'delay');
+    // makeSeries('Delayed', 'delay');
     chart.appear(1000, 100);
 
     return () => {
@@ -363,7 +363,7 @@ const Chart = (props: any) => {
         id={chartID}
         style={{
           width: '22vw',
-          height: '55vh',
+          height: '60vh',
           backgroundColor: 'rgb(0,0,0,0)',
           color: 'white',
           marginRight: '10px',
