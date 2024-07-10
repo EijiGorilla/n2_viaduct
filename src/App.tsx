@@ -48,6 +48,14 @@ function App() {
   const [cpValueSelected, setCpValueSelected] = useState<any>('N-01');
   const contractPackage = ['N-01', 'N-02', 'N-03', 'N-04'];
 
+  //
+  const [viaductLayerLoaded, setViaductLayerLoaded] = useState<any>();
+  useEffect(() => {
+    viaductLayer.load().then(() => {
+      setViaductLayerLoaded(viaductLayer.loadStatus);
+    });
+  });
+
   useEffect(() => {
     if (activeWidget) {
       const actionActiveWidget = document.querySelector(
@@ -108,7 +116,9 @@ function App() {
     <>
       <CalciteShell>
         <CalciteTabs slot="panel-end" style={{ width: '25vw' }}>
-          <Chart contractp={!cpValueSelected ? '' : cpValueSelected} />
+          {viaductLayerLoaded === 'loaded' && (
+            <Chart contractp={!cpValueSelected ? '' : cpValueSelected} />
+          )}
         </CalciteTabs>
         <header
           slot="header"
