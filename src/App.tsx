@@ -9,6 +9,11 @@ import '@esri/calcite-components/dist/components/calcite-list-item';
 import '@esri/calcite-components/dist/components/calcite-shell-panel';
 import '@esri/calcite-components/dist/components/calcite-action';
 import '@esri/calcite-components/dist/components/calcite-action-bar';
+import '@esri/calcite-components/dist/components/calcite-switch';
+import '@esri/calcite-components/dist/components/calcite-panel';
+import '@esri/calcite-components/dist/components/calcite-tabs';
+import '@esri/calcite-components/dist/components/calcite-segmented-control';
+import '@esri/calcite-components/dist/components/calcite-segmented-control-item';
 import '@esri/calcite-components/dist/calcite/calcite.css';
 import {
   CalciteShell,

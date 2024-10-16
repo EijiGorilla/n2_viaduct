@@ -14,6 +14,7 @@ import {
   thousands_separators,
   zoomToLayer,
 } from '../Query';
+import '@esri/calcite-components/dist/components/calcite-label';
 import { CalciteLabel } from '@esri/calcite-components-react';
 
 // Dispose function
@@ -341,23 +342,54 @@ const Chart = (props: any) => {
       root.dispose();
     };
   });
-
+  const primaryLabelColor = '#9ca3af';
+  const valueLabelColor = '#d1d5db';
   return (
     <div>
-      <CalciteLabel>TOTAL PROGRESS</CalciteLabel>
+      <div
+        style={{
+          color: primaryLabelColor,
+          fontSize: '1.3rem',
+          marginLeft: '13px',
+          marginTop: '10px',
+          marginBottom: '-10px',
+        }}
+      >
+        Total Progress
+      </div>
       <CalciteLabel layout="inline">
-        <b className="totalProgressNumber">
+        <div
+          style={{
+            color: valueLabelColor,
+            fontSize: '2.5rem',
+            fontWeight: 'bold',
+            fontFamily: 'calibri',
+            lineHeight: '1.2',
+            marginLeft: '20px',
+          }}
+        >
           {thousands_separators(progress[2])} %
-          <img
-            src="https://EijiGorilla.github.io/Symbols/Viaduct_Images/Viaduct_All_Logo.svg"
-            alt="Utility Logo"
-            height={'15%'}
-            width={'15%'}
-            style={{ marginLeft: '75%', display: 'flex', marginTop: '-15%' }}
-          />
-          <div className="totalProgressNumber2">({thousands_separators(progress[0])})</div>
-        </b>
+        </div>
+        <img
+          src="https://EijiGorilla.github.io/Symbols/Viaduct_Images/Viaduct_All_Logo.svg"
+          alt="Utility Logo"
+          height={'50px'}
+          width={'50px'}
+          style={{ marginLeft: '100px', display: 'flex', marginTop: '-35px' }}
+        />
       </CalciteLabel>
+      <div
+        style={{
+          color: valueLabelColor,
+          fontSize: '1rem',
+          fontFamily: 'calibri',
+          lineHeight: '1.2',
+          marginLeft: '40px',
+          marginTop: '-10px',
+        }}
+      >
+        ({thousands_separators(progress[0])})
+      </div>
 
       <div
         id={chartID}
