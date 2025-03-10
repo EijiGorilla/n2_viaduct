@@ -32,7 +32,8 @@ const viaductGroupLayer = new GroupLayer({
   title: 'Viaduct',
   visible: true,
   visibilityMode: 'independent',
-  layers: [launchingGirderLayer, viaductLayer],
+  // layers: [launchingGirderLayer, viaductLayer],
+  layers: [viaductLayer],
 });
 
 map.add(viaductGroupLayer);

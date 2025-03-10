@@ -420,6 +420,37 @@ export async function timeSeriesChartData(contractp: any) {
         },
       );
     });
+
+    // calculate cumulative count
+    var sum1: any = 0;
+    var sum2: any = 0;
+    var sum3: any = 0;
+    var sum4: any = 0;
+    var sum5: any = 0;
+
+    const data2 = data.map((result: any, index: any) => {
+      const date = result.date;
+      const v_pile = result.pile;
+      const v_pilecap = result.pilecap;
+      const v_pier = result.pier;
+      const v_pierhead = result.piearhead;
+      const v_precast = result.precast;
+      sum1 += v_pile;
+      sum2 += v_pilecap;
+      sum3 += v_pier;
+      sum4 += v_pierhead;
+      sum5 += v_precast;
+      // console.log(sum1, '; ', sum2, '; ', sum3, '; ', sum4, '; ', sum5);
+      return Object.assign({
+        date,
+        pile: sum1,
+        pilecap: sum2,
+        pier: sum3,
+        pierhead: sum4,
+        precast: sum5,
+      });
+    });
+    // console.log(data2);
     return data;
   });
 }
