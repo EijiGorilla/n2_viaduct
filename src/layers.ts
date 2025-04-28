@@ -236,7 +236,7 @@ const colorViaduct = [
 
 function renderViaductLayer() {
   const renderer = new UniqueValueRenderer({
-    field: 'Status1',
+    field: 'Status',
   });
 
   for (var i = 0; i < colorViaduct.length; i++) {
@@ -262,7 +262,7 @@ function renderViaductLayer() {
 
 export const viaductLayer = new SceneLayer({
   portalItem: {
-    id: 'd3fc705f1ec14d888214bfdbf37f1fe7',
+    id: '3c112d7fe610486eaf4df3eac07d3ea0',
     portal: {
       url: 'https://gis.railway-sector.com/portal',
     },
@@ -304,10 +304,10 @@ renderViaductLayer();
 
 export const viaductLayerStatus4 = new SceneLayer({
   portalItem: {
-    id: 'd3fc705f1ec14d888214bfdbf37f1fe7',
+    id: '3c112d7fe610486eaf4df3eac07d3ea0',
     portal: {
       url: 'https://gis.railway-sector.com/portal',
     },
   },
-  definitionExpression: 'Status1 = 4',
+  definitionExpression: 'Status = 4',
 });

@@ -292,7 +292,7 @@ const Chart = (props: any) => {
           'Type = ' +
           typeSelect +
           ' AND ' +
-          'Status1 = ' +
+          'Status = ' +
           selectedStatus;
 
         // Define Query
