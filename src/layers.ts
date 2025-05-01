@@ -99,7 +99,7 @@ var pierNoLabelClass = new LabelClass({
   }),
   labelPlacement: 'above-center',
   labelExpressionInfo: {
-    expression: '$feature.PIER',
+    expression: '$feature.PierNumber',
     //value: "{TEXTSTRING}"
   },
 });
